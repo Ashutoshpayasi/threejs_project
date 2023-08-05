@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Virtual Environment</title>
+    <style>
+        html,
+        body{
+            margin:0;
+        }
+        .frame {
+            width: 1080px;
+            height: 800px;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+                Droid Sans, Helvetica Neue, sans-serif;
+            padding: 20px;
+            font-size: 14px;
+            border: none;
+        }
+
+        .warning {
+            background-color: #df68a2;
+            padding: 3px;
+            border-radius: 5px;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <input type="button" value="Customize Your Avatar" id="customizeButton" />
+    <p id="avatarUrl">Avatar URL:</p>
+
+
+    <iframe id="frame" class="frame" allow="camera *; microphone *; clipboard-write" hidden></iframe>
+    <div id="container"></div>
+
+<!-- 
+    <script type="module" src="./js/script.js"></script> -->
+</body>
+<script type="module" src="dist/bundle.js"></script>
+</html> 
