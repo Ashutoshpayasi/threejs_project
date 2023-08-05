@@ -130,3 +130,70 @@ function parse(event) {
         return null;
     }
 }
+
+
+//adding functionalities
+
+// Add event listener for color change button
+const changeColorButton = document.getElementById('changeColorButton');
+const colorPicker = document.getElementById('colorPicker');
+
+changeColorButton.addEventListener('click', () => {
+    const newColor = new THREE.Color(colorPicker.value);
+    
+    // Smoothly transition room color
+    const colorChangeDuration = 1000; // Animation duration in milliseconds
+    const originalColor = room.material.color.clone();
+    let startTime = null;
+
+    function animateColor(timestamp) {
+        if (!startTime) startTime = timestamp;
+
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / colorChangeDuration, 1);
+
+        const interpolatedColor = originalColor.clone().lerp(newColor, progress);
+        room.material.color.copy(interpolatedColor);
+
+        if (progress < 1) {
+            requestAnimationFrame(animateColor);
+        }
+    }
+
+    requestAnimationFrame(animateColor);
+});
+
+
+///
+
+// Add event listener for camera movement button
+const moveCameraButton = document.getElementById('moveCameraButton');
+
+moveCameraButton.addEventListener('click', () => {
+    const targetPosition = new THREE.Vector3(10, 5, 20);  // Example target position
+    
+    // Smoothly transition camera position
+    const cameraMoveDuration = 1000; // Animation duration in milliseconds
+    const startPosition = camera.position.clone();
+    let startTime = null;
+
+    function animateCamera(timestamp) {
+        if (!startTime) startTime = timestamp;
+
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / cameraMoveDuration, 1);
+
+        const newPosition = new THREE.Vector3();
+        newPosition.x = THREE.MathUtils.lerp(startPosition.x, targetPosition.x, progress);
+        newPosition.y = THREE.MathUtils.lerp(startPosition.y, targetPosition.y, progress);
+        newPosition.z = THREE.MathUtils.lerp(startPosition.z, targetPosition.z, progress);
+
+        camera.position.copy(newPosition);
+
+        if (progress < 1) {
+            requestAnimationFrame(animateCamera);
+        }
+    }
+
+    requestAnimationFrame(animateCamera);
+});
