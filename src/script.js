@@ -134,6 +134,15 @@ function parse(event) {
 
 //adding functionalities
 
+// Add event listener for background color change button
+const changeBackgroundColorButton = document.getElementById('changeBackgroundColorButton');
+const backgroundColorPicker = document.getElementById('backgroundColorPicker');
+
+changeBackgroundColorButton.addEventListener('click', () => {
+    const newBackgroundColor = backgroundColorPicker.value;
+    document.body.style.backgroundColor = newBackgroundColor;
+});
+
 // Add event listener for color change button
 const changeColorButton = document.getElementById('changeColorButton');
 const colorPicker = document.getElementById('colorPicker');
@@ -197,3 +206,10 @@ moveCameraButton.addEventListener('click', () => {
 
     requestAnimationFrame(animateCamera);
 });
+
+
+// Add event listener for background color change button
+
+
+// Get the canvas container element
+
